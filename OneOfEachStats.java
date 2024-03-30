@@ -15,7 +15,13 @@ public class OneOfEachStats {
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed);  
 		
-		double sumChildrenForAllFamilies = 0;
+		double sumChildrenForAllFamilies = 0;		
+		int numFamiliesWith2Child = 0;
+		int numFamiliesWith3Child = 0;
+		int numFamiliesWith4OrMoreChild = 0;
+
+		// find num families per num children
+		// calculate total & average num children
 		for (int family = 0; family < numOfFamilies; family++)
 		{
 			boolean haveBoy = false;
@@ -30,10 +36,54 @@ public class OneOfEachStats {
 				}
 				childrenForThisFamily++;
 			}
+			
+			if(childrenForThisFamily < 2){
+				System.out.println("Error: cannot have famility with 0 or 1 children");
+				return;
+			}
+			
+			switch (childrenForThisFamily)
+			{
+				case 2:
+					numFamiliesWith2Child++;
+					break;
+				case 3:
+					numFamiliesWith3Child++;
+					break;
+				default:
+					numFamiliesWith4OrMoreChild++;
+					break;
+			}			
 			sumChildrenForAllFamilies += childrenForThisFamily;
 		}
 		double averageChildren = sumChildrenForAllFamilies / numOfFamilies;
 		System.out.println("Average: " + averageChildren + " children to get at least one of each gender.");
+		System.out.println("Number of families with 2 children: " + numFamiliesWith2Child);
+		System.out.println("Number of families with 3 children: " + numFamiliesWith3Child);
+		System.out.println("Number of families with 4 or more children: " + numFamiliesWith4OrMoreChild);
+
+		// print num families per num children
+		int mostCommonNumChildren = 2;
+		int mostCommonNumFamilies = numFamiliesWith2Child;
+		if(numFamiliesWith3Child > mostCommonNumFamilies)
+		{
+			mostCommonNumChildren = 3;
+			mostCommonNumFamilies = numFamiliesWith3Child;	
+		}
+		if(numFamiliesWith4OrMoreChild > mostCommonNumFamilies)
+		{
+			mostCommonNumChildren = 4;
+			mostCommonNumFamilies = numFamiliesWith4OrMoreChild;	
+		}
+
+		if (mostCommonNumChildren == 2 || mostCommonNumChildren  == 3)
+		{
+			System.out.println("The most common number of children is " + mostCommonNumChildren + ".");
+		}
+		else
+		{
+			System.out.println("The most common number of children is 4 or more.");
+		}
 
 		//// In the previous version of this program, you used a statement like:
 		//// double rnd = Math.random();
