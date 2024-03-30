@@ -10,11 +10,31 @@ import java.util.Random;
 public class OneOfEachStats {
 	public static void main (String[] args) {
 		// Gets the two command-line arguments
-		int T = Integer.parseInt(args[0]);
+		int numOfFamilies = Integer.parseInt(args[0]);
 		int seed = Integer.parseInt(args[1]);
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed);  
 		
+		double sumChildrenForAllFamilies = 0;
+		for (int family = 0; family < numOfFamilies; family++)
+		{
+			boolean haveBoy = false;
+			boolean haveGirl = false;
+			int childrenForThisFamily= 0;
+			while (!(haveBoy && haveGirl)) {
+				double rnd = generator.nextDouble();
+				if (rnd < 0.5) {
+					haveBoy = true;
+				} else {
+					haveGirl = true;
+				}
+				childrenForThisFamily++;
+			}
+			sumChildrenForAllFamilies += childrenForThisFamily;
+		}
+		double averageChildren = sumChildrenForAllFamilies / numOfFamilies;
+		System.out.println("Average: " + averageChildren + " children to get at least one of each gender.");
+
 		//// In the previous version of this program, you used a statement like:
 		//// double rnd = Math.random();
 		//// Where "rnd" is the variable that stores the generated random value.

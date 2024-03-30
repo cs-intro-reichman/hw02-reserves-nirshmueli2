@@ -9,8 +9,8 @@ public class Reverse {
 		for (int i = n ; i >= 0 ; i--){
 			System.out.print(str.charAt(i));
 		}
-		System.out.println(" ");
-		System.out.println("the middle letter of the word " + str + " is " + str.charAt((n/2)));
+		System.out.println("");
+		System.out.println("The middle character is " + str.charAt(n/2));
 		//// Put your code here
 	}
 }

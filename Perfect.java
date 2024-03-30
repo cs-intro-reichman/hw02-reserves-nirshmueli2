@@ -15,9 +15,18 @@ public class Perfect {
             }
         }
         if (sum == number) {
-            System.out.println("the number " + number + " is perfect");
+            System.out.print(number + " is a perfect number since " + number);
+            boolean seenDivisors = false;
+            for (int i = 1; i < number; i++) {
+                if (number % i == 0) {
+                    System.out.print(seenDivisors ? " + " : " = ");                   
+                    System.out.print(i);
+                    seenDivisors = true;
+                }
+            }            
+            System.out.println("");
         } else {
-            System.out.println("the number " + number + " is not perfect");
+            System.out.println(number + " is not a perfect number");
         }
     }
 }
